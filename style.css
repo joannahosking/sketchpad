@@ -1,0 +1,35 @@
+body {
+    background: #0a1612;
+    font-family: 'Quicksand', sans-serif;
+    font-size: small;
+    color: #ccdfcb;
+}
+
+h1 {
+    color: #fff;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 3px 2px #ff6a5c;
+    text-transform: uppercase;
+}
+
+#container {
+    margin: 0px auto;
+    width: 960px;
+}
+
+#header {
+    margin: 0px auto;
+    text-align: center;
+}
+
+#sketchpad {
+    margin: 0px auto;
+}
+
+.square {
+    background-color: #f8eee7;
+    float: left;
+    margin: 1px;
+}
+
