@@ -1,26 +1,40 @@
 body {
     background: #0a1612;
-    font-family: 'Quicksand', sans-serif;
-    font-size: small;
-    color: #ccdfcb;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
 }
 
 h1 {
     color: #fff;
-    font-size: 3em;
+    font-size: 4em;
     font-weight: bold;
     text-shadow: 3px 2px #ff6a5c;
     text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
+    margin: 40px 0 25px 0;
 }
 
 #container {
     margin: 0px auto;
-    width: 960px;
 }
 
 #header {
     margin: 0px auto;
     text-align: center;
+}
+
+#options {
+    text-align: left;
+    margin: 0 15px 15px 15px;
+}
+
+#alert {
+    color: red;
+    font-size: small;
+    text-align: center;
+    margin: 5px 0px;
 }
 
 #sketchpad {
@@ -31,5 +45,61 @@ h1 {
     background-color: #f8eee7;
     float: left;
     margin: 1px;
+    border: none;
 }
 
+.square > a {
+    border: none;
+}
+
+/* remove default styling */
+input {
+    -webkit-appearance: none;
+    outline: none;
+}
+
+input[type="text"] {
+    background: transparent;
+    border: 1px #fff solid;
+    width: 28px;
+    border-radius: 2px;
+    font-size: 0.9em;
+    color: #fff;
+    padding: 2px 5px;
+}
+
+label {
+    margin: 0 4px 0 0;
+    padding: 0;
+}
+
+input.press {
+    background: #ff6a5c;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+    font-family: 'Work Sans', sans-serif;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 2px 1px #fff;
+    margin: 0 0 0 15px;
+    float: right;
+}
+
+input.press:hover {
+    box-shadow: 1px 0px #fff;
+}
+
+input[name="change-cols"] {
+    margin: 0 10px 0 0;
+    padding: 2px 5px;
+    float: none;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
