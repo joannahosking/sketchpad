@@ -1,7 +1,5 @@
-$(document).ready(function () {
 // global variables
 var cols = 16,
-	width = $('#sketchpad').width(),
 	minSize = 10,
 	maxSize = 100,
 	color = "#ff6a5c",
@@ -15,8 +13,9 @@ var cols = 16,
 		"#4b49b4",
 		"#833bad"
 	];
-	
-	console.log(width);
+
+$(document).ready(function () {
+	width = $('#sketchpad').width();
 	
 	// reset button
 	$('input[name="reset"]').click(function () {
