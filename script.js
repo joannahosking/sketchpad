@@ -1,74 +1,73 @@
-// global variables
-var cols = 16,
-	minSize = 10,
-	maxSize = 100,
-	color = "#ff6a5c",
-	i = 0,
-	rainbow = [
-		"#ffbe3d",
-		"#eaea3b",
-		"#84b900",
-		"#37b575",
-		"#3b74a7",
-		"#4b49b4",
-		"#833bad"
-	];
+const grid = document.querySelector('#sketchpad');
+const rainbow = [
+	"#ffbe3d",
+	"#84b900",
+	"#37b575",
+	"#3b74a7",
+	"#4b49b4",
+	"#833bad"
+];
+let color = '#ff6a5c';
+let cols = 5;
+const min = 5;
+const max = 25;
+const columnOptions = [];
 
-$(document).ready(function () {
-	width = $('#sketchpad').width();
-	
-	// reset button
-	$('input[name="reset"]').click(function () {
-		$('.square').css('background-color', '#f8eee7');
-		color = "#ff6a5c";
-	});
 
-	// change grid size
-	$('input[name="change-cols"]').click(function () {
-		cols = $('input[name="input-cols"]').val();
+// populate the column options
+for(i = min; i <= max; i+=5) {
+	columnOptions.push(i);
+}
 
-		if (isNaN(cols)) {
-			alert('You must enter a number.');
-			return;
-		} else if (cols < minSize || cols > maxSize) {
-			alert('You may only enter between ' + minSize + ' and ' + maxSize + ' columns.');
-			return;
-		}
+document.getElementById('input-cols').innerHTML = columnOptions
+	.map(option => `<option value="${option}">${option}</option>`)
+	.join('');
 
-		reset();
-		initGrid(cols, width);
-	});
+// build the grid
+function buildGrid() {
+	const totalSquares = cols * cols;
+	const square = document.createElement('div');
+	const squareWidth = (grid.offsetWidth / cols) + 'px';
+	square.style.width = squareWidth;
+	square.style.height = squareWidth;
+	for (i = 0; i < totalSquares; i++) {
+		grid.appendChild(square.cloneNode(true));
+	}
+}
 
-	// rainbow button to change colors
-	$('input[name="rainbow"]').on('click', function () {
-		var randomNumber = Math.floor(Math.random() * 6);
-		color = rainbow[randomNumber];
-	});
+buildGrid();
 
-	// load the first grid at 16 x 16
-	initGrid(cols, width);
-
+// resize the grid
+document.getElementById('input-cols').addEventListener('change', (e) => {
+	cols = e.target.value;
+	reset();
 });
 
-
-// initialize new grid function
-function initGrid(cols, width) {
-	var squares = (cols * cols),
-			size = ((width - (cols * 2)) / cols);
-
-	for (i = 0; i < squares; i++) {
-		$('#sketchpad').append('<div class="square"></div>');
+// change the active color
+function changeColor() {
+	const randomColor = Math.floor(Math.random() * rainbow.length);
+	const newColor = rainbow[randomColor];
+	if (color == newColor) {
+		changeColor();
 	}
-
-	$('.square').css('width', size);
-	$('.square').css('height', size);
-
-	$('.square').mouseover(function () {
-		$(this).css('background-color', color);
-	});
+	color = newColor;
+	document.documentElement.style.setProperty('--accent', color);
 }
 
-// reset grid function
+document.getElementById('rainbow').addEventListener('click', changeColor);
+
+// reset the page
 function reset() {
-	$('#sketchpad').empty();
+	grid.innerHTML = '';
+	buildGrid();
 }
+
+document.getElementById('reset').addEventListener('click', reset);
+
+// time to draw
+function draw(e) {
+	e.target.style.backgroundColor = color;
+}
+
+grid.addEventListener('touchmove', draw);
+grid.addEventListener('mousemove', draw);

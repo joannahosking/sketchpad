@@ -1,3 +1,27 @@
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 700;
+	src: url(https://fonts.gstatic.com/s/quicksand/v21/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkBgv58a-wg.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+  @font-face {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	src: url(https://fonts.gstatic.com/s/worksans/v8/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32K3vXBi8Jpg.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+	--accent: #ff6a5c;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background: #0a1612;
 	font-family: 'Work Sans', sans-serif;
@@ -10,16 +34,18 @@ h1 {
 	color: #fff;
 	font-size: 3em;
 	font-weight: bold;
-	text-shadow: 3px 2px #ff6a5c;
+	text-shadow: 3px 2px var(--accent);
 	text-transform: uppercase;
 	font-family: 'Quicksand', sans-serif;
 	margin: 40px 0 25px 0;
+	transition: text-shadow 0.2s ease;
 }
 
 #container {
 	margin: 0px auto;
 	width: 100%;
-	max-width: 800px;
+	max-width: 700px;
+	padding-bottom: 30px;
 }
 
 #header {
@@ -40,19 +66,21 @@ h1 {
 }
 
 #sketchpad {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	width: 100%;
 	margin: 0px auto;
+	text-align: center;
 }
 
-.square {
+#sketchpad > div {
+	display: inline-block;
 	background-color: #f8eee7;
-	float: left;
-	margin: 1px;
-	border: none;
-}
-
-.square > a {
-	border: none;
+	padding: 0;
+	border: 1px solid #0a1612;
+	transition: background-color 0.2s ease;
 }
 
 /* remove default styling */
@@ -61,13 +89,19 @@ input {
 	outline: none;
 }
 
-input[type="text"] {
+button {
 	background: transparent;
 	border: 1px #fff solid;
-	width: 28px;
 	border-radius: 2px;
 	font-size: 0.9em;
 	color: #fff;
+	padding: 2px 5px;
+}
+
+select {
+	background: #fff;
+	color: #0a1612;
+	font-size: 0.9em;
 	padding: 2px 5px;
 }
 
@@ -76,33 +110,32 @@ label {
 	padding: 0;
 }
 
-input.press {
-	background: #ff6a5c;
-	color: #fff;
+button.press {
+	position: relative;
+	display: block;
 	padding: 3px 8px;
+	margin: 0 0 0 15px;
+	float: right;
+	background: var(--accent);
+	border: none;
+	border-radius: 2px;
+	box-shadow: 2px 2px #fff;
+	color: #fff;
 	font-size: 0.9em;
 	font-weight: 500;
 	font-family: 'Work Sans', sans-serif;
-	border: none;
-	border-radius: 2px;
-	box-shadow: 2px 1px #fff;
-	margin: 0 0 0 15px;
-	float: right;
+	transition: background-color 0.2s ease;
+	cursor: pointer;
 }
 
-input.press:hover {
-	box-shadow: 1px 0px #fff;
+.press:hover {
+	box-shadow: 1px 1px #fff;
+	top: 1px;
+	left: 1px;
 }
 
 input[name="change-cols"] {
 	margin: 0 10px 0 0;
 	padding: 2px 5px;
 	float: none;
-}
-
-input[type="button"]:hover {
-	cursor: pointer;
-	position: relative;
-	top: 1px;
-	left: 1px;
 }
