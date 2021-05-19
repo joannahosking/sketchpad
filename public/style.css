@@ -83,6 +83,21 @@ h1 {
 	transition: background-color 0.2s ease;
 }
 
+#footer {
+	font-size: 14px;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+#footer a {
+	color: #fff;
+	transition: color 0.25s ease-out;
+}
+
+#footer a:hover {
+	color: var(--accent);
+}
+
 /* remove default styling */
 input {
 	-webkit-appearance: none;
